@@ -23,9 +23,12 @@ func _physics_process(delta: float) -> void:
     if collision:
         collider = collision.get_collider()
         #ball hits paddle
+        print(position)
         if collider == $"../Player" or collider == $"../CPU":
             speed += ACCEL
-            dir = new_direction(collider)
+            dir = new_direction(collider, null)
+        elif collider == $"../Player2":
+            dir = new_direction(collider, collision)
         #ball hits wall
         else:
             dir = dir.bounce(collision.get_normal())
@@ -36,16 +39,22 @@ func random_direction():
     new_dir.y = randf_range(-1,1)
     return new_dir.normalized()
     
-func new_direction(collider):
+func new_direction(collider, collision):
     var ball_y = position.y
     var pad_y = collider.position.y
     var dist = ball_y - pad_y
     var new_dir := Vector2()
-    
-    if dir.x > 0:
-        new_dir.x = -1
+    #if hit on Top or Bottom Paddle -> just bounce
+    if(position.x > 65.5 && collision != null):
+       new_dir = dir.bounce(collision.get_normal())
+       return new_dir.normalized()
     else:
-        new_dir.x = 1
-        
-    new_dir.y = (dist / (collider.p_height / 2)) * MAX_Y_VECTOR
-    return new_dir.normalized()
+    #flip direction
+        if dir.x > 0:
+            new_dir.x = -1
+        else:
+            new_dir.x = 1
+            
+        new_dir.y = (dist / (collider.p_height / 2)) * MAX_Y_VECTOR
+        speed += ACCEL
+        return new_dir.normalized()

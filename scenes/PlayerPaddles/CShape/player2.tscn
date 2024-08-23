@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://csv2xht8gwb8d"]
+
+[ext_resource type="Script" path="res://scenes/PlayerPaddles/CShape/player2.gd" id="1_ilwd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs3k"]
+size = Vector2(20, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le80y"]
+size = Vector2(120, 20)
+
+[node name="Player2" type="CharacterBody2D"]
+script = ExtResource("1_ilwd6")
+
+[node name="CollisionSide" type="CollisionShape2D" parent="."]
+position = Vector2(60, 324)
+shape = SubResource("RectangleShape2D_lqs3k")
+
+[node name="ColorRect" type="ColorRect" parent="CollisionSide"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -60.0
+offset_right = 10.0
+offset_bottom = 60.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionTop" type="CollisionShape2D" parent="."]
+position = Vector2(110, 254)
+shape = SubResource("RectangleShape2D_le80y")
+
+[node name="ColorRectTop" type="ColorRect" parent="CollisionTop"]
+offset_left = -60.0
+offset_top = -10.0
+offset_right = 60.0
+offset_bottom = 10.0
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="."]
+position = Vector2(110, 394)
+shape = SubResource("RectangleShape2D_le80y")
+
+[node name="ColorRectBottom" type="ColorRect" parent="CollisionBottom"]
+offset_left = -60.0
+offset_top = -10.0
+offset_right = 60.0
+offset_bottom = 10.0

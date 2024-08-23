@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmkplkn6d2blt"]
+
+[ext_resource type="Script" path="res://scenes/PlayerPaddles/Default/cpu.gd" id="1_8ib46"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs3k"]
+size = Vector2(20, 120)
+
+[node name="CPU" type="StaticBody2D"]
+position = Vector2(1082, 324)
+script = ExtResource("1_8ib46")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_lqs3k")
