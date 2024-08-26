@@ -8,7 +8,13 @@ var dir: Vector2
 const MAX_Y_VECTOR: float = 0.6
 
 func _ready() -> void:
-    win_size = get_viewport_rect().size
+    #var options = OptionsManager.read_options()
+    #if(options.has("window_width") and options.has("window_height")):
+        #print(true)
+        #win_size.x = options.window_width
+        #win_size.y = options.window_height
+    #else:
+        win_size = get_viewport_rect().size
     
 func new_Ball():
     #random start and direction

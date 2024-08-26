@@ -6,6 +6,8 @@ var p_width: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+     #var options = OptionsManager.read_options()
+    #win_height = options.window_height
     win_height = get_viewport_rect().size.y
     p_height = $CollisionSide/ColorRect.get_size().y
     p_width = $CollisionSide/ColorRect.get_size().x

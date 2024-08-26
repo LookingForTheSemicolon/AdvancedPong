@@ -8,10 +8,11 @@ var p_height:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    #var options = OptionsManager.read_options()
+    #win_height = options.window_height
     win_height = get_viewport_rect().size.y
     p_height = $ColorRect.get_size().y
-    print("CPU: " + str(p_height /2))
-
+    
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
     #move paddle towards ball

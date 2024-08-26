@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb6hagkqbm3rh"]
+[gd_scene load_steps=11 format=3 uid="uid://cb6hagkqbm3rh"]
 
 [ext_resource type="Texture2D" uid="uid://cdi47qxpig3qo" path="res://art/PongBackground.png" id="1_hvium"]
-[ext_resource type="Script" path="res://scenes/game.gd" id="2_gupkl"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="2_gupkl"]
 [ext_resource type="PackedScene" uid="uid://dj08dqvefi38j" path="res://scenes/PlayerPaddles/Default/player.tscn" id="3_h4dx0"]
 [ext_resource type="PackedScene" uid="uid://csv2xht8gwb8d" path="res://scenes/PlayerPaddles/CShape/player2.tscn" id="4_661ns"]
 [ext_resource type="PackedScene" uid="uid://bmkplkn6d2blt" path="res://scenes/PlayerPaddles/Default/cpu.tscn" id="5_rwan6"]
 [ext_resource type="PackedScene" uid="uid://dm6xf6fsg8y6y" path="res://scenes/Balls/ball.tscn" id="6_yic3j"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_qo8s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d6x6"]
 size = Vector2(1152, 32)
@@ -17,20 +19,42 @@ size = Vector2(1152, 24)
 size = Vector2(31, 644.75)
 
 [node name="Game" type="Sprite2D"]
-texture = ExtResource("1_hvium")
+texture = SubResource("MeshTexture_qo8s2")
 centered = false
 script = ExtResource("2_gupkl")
 
+[node name="Node" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PongBackground" type="TextureRect" parent="Node"]
+modulate = Color(0.393086, 0.393086, 0.393085, 1)
+self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1151.0
+offset_bottom = 647.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hvium")
+
 [node name="Player" parent="." instance=ExtResource("3_h4dx0")]
+visible = true
 
 [node name="Player2" parent="." instance=ExtResource("4_661ns")]
 position = Vector2(50, 324)
 
-[node name="CollisionTop" parent="Player2" index="0"]
-position = Vector2(50, -69)
-
-[node name="CollisionSide" parent="Player2" index="1"]
+[node name="CollisionSide" parent="Player2" index="0"]
 position = Vector2(0, 1)
+
+[node name="CollisionTop" parent="Player2" index="1"]
+position = Vector2(50, -69)
 
 [node name="CollisionBottom" parent="Player2" index="2"]
 position = Vector2(50, 71.5)

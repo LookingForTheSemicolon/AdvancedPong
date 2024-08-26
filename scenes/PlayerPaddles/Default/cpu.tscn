@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmkplkn6d2blt"]
 
-[ext_resource type="Script" path="res://scenes/PlayerPaddles/Default/cpu.gd" id="1_8ib46"]
+[ext_resource type="Script" path="res://scripts/cpu.gd" id="1_8ib46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs3k"]
 size = Vector2(20, 120)
