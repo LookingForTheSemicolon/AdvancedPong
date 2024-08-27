@@ -1,10 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb6hagkqbm3rh"]
+[gd_scene load_steps=8 format=3 uid="uid://cb6hagkqbm3rh"]
 
 [ext_resource type="Texture2D" uid="uid://cdi47qxpig3qo" path="res://art/PongBackground.png" id="1_hvium"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="2_gupkl"]
-[ext_resource type="PackedScene" uid="uid://dj08dqvefi38j" path="res://scenes/PlayerPaddles/Default/player.tscn" id="3_h4dx0"]
-[ext_resource type="PackedScene" uid="uid://csv2xht8gwb8d" path="res://scenes/PlayerPaddles/CShape/player2.tscn" id="4_661ns"]
-[ext_resource type="PackedScene" uid="uid://bmkplkn6d2blt" path="res://scenes/PlayerPaddles/Default/cpu.tscn" id="5_rwan6"]
 [ext_resource type="PackedScene" uid="uid://dm6xf6fsg8y6y" path="res://scenes/Balls/ball.tscn" id="6_yic3j"]
 
 [sub_resource type="MeshTexture" id="MeshTexture_qo8s2"]
@@ -43,23 +40,6 @@ offset_bottom = 647.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_hvium")
-
-[node name="Player" parent="." instance=ExtResource("3_h4dx0")]
-visible = true
-
-[node name="Player2" parent="." instance=ExtResource("4_661ns")]
-position = Vector2(50, 324)
-
-[node name="CollisionSide" parent="Player2" index="0"]
-position = Vector2(0, 1)
-
-[node name="CollisionTop" parent="Player2" index="1"]
-position = Vector2(50, -69)
-
-[node name="CollisionBottom" parent="Player2" index="2"]
-position = Vector2(50, 71.5)
-
-[node name="CPU" parent="." instance=ExtResource("5_rwan6")]
 
 [node name="Ball" parent="." instance=ExtResource("6_yic3j")]
 
@@ -114,7 +94,4 @@ autostart = true
 [connection signal="body_entered" from="ScoreRight" to="." method="_on_score_right_body_entered"]
 [connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
 
-[editable path="Player"]
-[editable path="Player2"]
-[editable path="CPU"]
 [editable path="Ball"]

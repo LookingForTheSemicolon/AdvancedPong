@@ -36,27 +36,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer"]
+[node name="Grid" type="GridContainer" parent="TabContainer/Graphics/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
 
-[node name="WindowSize" type="Label" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="WindowSize" type="Label" parent="TabContainer/Graphics/MarginContainer/Grid"]
 layout_mode = 2
 text = "Window Size"
 
-[node name="WindowSizeOption" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="WindowSizeOption" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/Grid"]
 layout_mode = 2
 
-[node name="FullscreenButton" type="CheckButton" parent="TabContainer/Graphics/MarginContainer/VBoxContainer"]
+[node name="FullscreenButton2" type="Label" parent="TabContainer/Graphics/MarginContainer/Grid"]
 layout_mode = 2
-button_pressed = true
 text = "Fullscreen:"
+
+[node name="FullscreenButton" type="CheckButton" parent="TabContainer/Graphics/MarginContainer/Grid"]
+layout_mode = 2
+action_mode = 0
 
 [node name="Player" type="TabBar" parent="TabContainer"]
 visible = false
@@ -75,30 +79,25 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Player/MarginContainer"]
+[node name="Grid" type="GridContainer" parent="TabContainer/Player/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 10
+columns = 2
 
-[node name="Player" type="Label" parent="TabContainer/Player/MarginContainer/VBoxContainer"]
+[node name="PlayerPaddle" type="Label" parent="TabContainer/Player/MarginContainer/Grid"]
 layout_mode = 2
-text = "123456789"
+text = "Player Paddle"
 
-[node name="Player2" type="Label" parent="TabContainer/Player/MarginContainer/VBoxContainer"]
+[node name="PlayerPaddleOption" type="OptionButton" parent="TabContainer/Player/MarginContainer/Grid"]
 layout_mode = 2
-text = "123456789"
 
-[node name="Player3" type="Label" parent="TabContainer/Player/MarginContainer/VBoxContainer"]
+[node name="CPUPaddle" type="Label" parent="TabContainer/Player/MarginContainer/Grid"]
 layout_mode = 2
-text = "123456789"
+text = "CPU Paddle"
 
-[node name="Player4" type="Label" parent="TabContainer/Player/MarginContainer/VBoxContainer"]
+[node name="CPUPaddleOption" type="OptionButton" parent="TabContainer/Player/MarginContainer/Grid"]
 layout_mode = 2
-text = "123456789"
-
-[node name="Player5" type="Label" parent="TabContainer/Player/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "123456789"
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
 visible = false
@@ -184,5 +183,7 @@ text = "123456789"
 layout_mode = 2
 text = "123456789"
 
-[connection signal="item_selected" from="TabContainer/Graphics/MarginContainer/VBoxContainer/WindowSizeOption" to="." method="_on_window_size_option_item_selected"]
-[connection signal="toggled" from="TabContainer/Graphics/MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="item_selected" from="TabContainer/Graphics/MarginContainer/Grid/WindowSizeOption" to="." method="_on_window_size_option_item_selected"]
+[connection signal="toggled" from="TabContainer/Graphics/MarginContainer/Grid/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="item_selected" from="TabContainer/Player/MarginContainer/Grid/PlayerPaddleOption" to="." method="_on_player_paddle_option_item_selected"]
+[connection signal="item_selected" from="TabContainer/Player/MarginContainer/Grid/CPUPaddleOption" to="." method="_on_cpu_paddle_option_item_selected"]

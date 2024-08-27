@@ -4,14 +4,18 @@ extends Control
 @onready var options_button = $VBoxContainer/OptionsButton as Button
 @onready var exit_button = $VBoxContainer/ExitButton as Button
 
+
 @onready var start_level = preload("res://scenes/game.tscn") as PackedScene
+
 @onready var options_menu = $Options as Options_Menu
 @onready var containerVB = $VBoxContainer as VBoxContainer
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
     handle_connection_singals()
+    OptionsManager.set_window_mode()
     start_button.grab_focus()
+    
     
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

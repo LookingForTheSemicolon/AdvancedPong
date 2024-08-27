@@ -9,10 +9,11 @@ size = Vector2(20, 120)
 size = Vector2(120, 20)
 
 [node name="Player2" type="CharacterBody2D"]
+position = Vector2(50, 324)
 script = ExtResource("1_ilwd6")
 
 [node name="CollisionSide" type="CollisionShape2D" parent="."]
-position = Vector2(60, 324)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_lqs3k")
 
 [node name="ColorRect" type="ColorRect" parent="CollisionSide"]
@@ -27,7 +28,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionTop" type="CollisionShape2D" parent="."]
-position = Vector2(110, 254)
+position = Vector2(50, -71)
 shape = SubResource("RectangleShape2D_le80y")
 
 [node name="ColorRectTop" type="ColorRect" parent="CollisionTop"]
@@ -37,7 +38,7 @@ offset_right = 60.0
 offset_bottom = 10.0
 
 [node name="CollisionBottom" type="CollisionShape2D" parent="."]
-position = Vector2(110, 394)
+position = Vector2(50, 69)
 shape = SubResource("RectangleShape2D_le80y")
 
 [node name="ColorRectBottom" type="ColorRect" parent="CollisionBottom"]
