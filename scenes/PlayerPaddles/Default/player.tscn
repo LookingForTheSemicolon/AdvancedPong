@@ -1,20 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj08dqvefi38j"]
+[gd_scene load_steps=5 format=3 uid="uid://cw3sacm35s47h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cygw0"]
+[ext_resource type="Texture2D" uid="uid://dn4i13t2sp3pu" path="res://sprites/paddle.png" id="2_rh5ch"]
+[ext_resource type="PackedScene" uid="uid://44cv7tv514u" path="res://scenes/Movement/Movment.tscn" id="3_00f0l"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs3k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13kv0"]
 size = Vector2(20, 120)
 
 [node name="Player" type="StaticBody2D"]
-position = Vector2(50, 324)
 script = ExtResource("1_cygw0")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -14.0
-offset_top = -60.0
-offset_right = 6.0
-offset_bottom = 60.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rh5ch")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_lqs3k")
+[node name="ColPlayer" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_13kv0")
+
+[node name="Movment" parent="." instance=ExtResource("3_00f0l")]

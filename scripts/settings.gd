@@ -17,9 +17,9 @@ func load_defaults():
     if not options.has("full_screen"):
        options["full_screen"] = false
     if not options.has("window_width"):
-       options["window_width"] = 1200
+       options["window_width"] = 1152
     if not options.has("window_height"):
-       options["window_height"] = 600
+       options["window_height"] = 648
     if not options.has("player_paddle"):
        options["player_paddle"] = {"name": "Standard"}
     if not options.has("cpu_paddle"):
@@ -34,24 +34,22 @@ func load_screen_page():
         
     var screen_size = DisplayServer.screen_get_size()
     var index = 0
-    for size in OptionsManager.window_size_list:
-        if size.width <= screen_size.x and size.height <= screen_size.y:
-            window_size_options_button.add_item((str(size.width) + " x " + str(size.height)))
-            if options.has("window_width") and size.width == options.window_width and options.has("window_height") and size.height == options.window_height:
+    for sizeWindow in OptionsManager.window_size_list:
+        if sizeWindow.width <= screen_size.x and sizeWindow.height <= screen_size.y:
+            window_size_options_button.add_item((str(sizeWindow.width) + " x " + str(sizeWindow.height)))
+            if options.has("window_width") and sizeWindow.width == options.window_width and options.has("window_height") and sizeWindow.height == options.window_height:
                 window_size_options_button.select(index)
             index += 1
         
 func load_paddles():
     var indexPlayer = 0
     var indexCPU = 0
-    for paddle in OptionsManager.player_paddles:
+    for paddle in OptionsManager.paddles:
         player_paddle_option.add_item(paddle.name)
+        cpu_paddle_option.add_item(paddle.name)
         if options.has("player_paddle") and paddle.name == options.player_paddle.name:
           player_paddle_option.select(indexPlayer) 
-        indexPlayer += 1
-                    
-    for paddle in OptionsManager.cpu_paddles:
-        cpu_paddle_option.add_item(paddle.name)
+        indexPlayer += 1         
         if options.has("cpu_paddle") and paddle.name == options.cpu_paddle.name:
           cpu_paddle_option.select(indexCPU) 
         indexCPU += 1
@@ -77,12 +75,12 @@ func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_player_paddle_option_item_selected(index: int) -> void:
-    var paddle = OptionsManager.player_paddles[index]
+    var paddle = OptionsManager.paddles[index]
     options.player_paddle = paddle
     OptionsManager.write_options(options)
 
 
 func _on_cpu_paddle_option_item_selected(index: int) -> void:
-    var paddle = OptionsManager.player_paddles[index]
+    var paddle = OptionsManager.paddles[index]
     options.cpu_paddle = paddle
     OptionsManager.write_options(options)

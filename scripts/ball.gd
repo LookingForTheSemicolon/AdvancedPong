@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Ball
 
 var win_size: Vector2
 const START_SPEED: int = 500
@@ -8,13 +9,7 @@ var dir: Vector2
 const MAX_Y_VECTOR: float = 0.6
 
 func _ready() -> void:
-    #var options = OptionsManager.read_options()
-    #if(options.has("window_width") and options.has("window_height")):
-        #print(true)
-        #win_size.x = options.window_width
-        #win_size.y = options.window_height
-    #else:
-        win_size = get_viewport_rect().size
+    win_size = get_viewport_rect().size
     
 func new_Ball():
     #random start and direction
@@ -29,12 +24,11 @@ func _physics_process(delta: float) -> void:
     if collision:
         collider = collision.get_collider()
         #ball hits paddle
-        print(position)
-        if collider == $"../Player" or collider == $"../CPU":
+        if collider.name == "Player" or collider.name == "CPU":
             speed += ACCEL
-            dir = new_direction(collider, null)
-        elif collider == $"../Player2":
-            dir = new_direction(collider, collision)
+            dir = new_direction_default(collider)
+        elif collider.name == "PlayerC":
+            dir = new_direction_CShape(collider, collision)
         #ball hits wall
         else:
             dir = dir.bounce(collision.get_normal())
@@ -45,22 +39,37 @@ func random_direction():
     new_dir.y = randf_range(-1,1)
     return new_dir.normalized()
     
-func new_direction(collider, collision):
+func new_direction_default(collider):
+    var ball_y = position.y
+    var pad_y = collider.position.y
+    var dist = ball_y - pad_y
+    var new_dir := Vector2()
+    
+    #flip direction
+    if dir.x > 0:
+        new_dir.x = -1
+    else:
+        new_dir.x = 1
+    
+    new_dir.y = (dist / (collider.p_height / 2)) * MAX_Y_VECTOR
+    speed += ACCEL
+    return new_dir.normalized()
+    
+func new_direction_CShape(collider, collision):
     var ball_y = position.y
     var pad_y = collider.position.y
     var dist = ball_y - pad_y
     var new_dir := Vector2()
     #if hit on Top or Bottom Paddle -> just bounce
-    if(position.x > 65.5 && collision != null):
-       new_dir = dir.bounce(collision.get_normal())
-       return new_dir.normalized()
-    else:
-    #flip direction
-        if dir.x > 0:
-            new_dir.x = -1
-        else:
-            new_dir.x = 1
-            
-        new_dir.y = (dist / (collider.p_height / 2)) * MAX_Y_VECTOR
-        speed += ACCEL
+    if(position.x > 65 && collision != null):
+        new_dir = dir.bounce(collision.get_normal())
         return new_dir.normalized()
+    #flip direction
+    if dir.x > 0:
+        new_dir.x = -1
+    else:
+        new_dir.x = 1
+    
+    new_dir.y = (dist / (collider.p_height / 2)) * MAX_Y_VECTOR
+    speed += ACCEL
+    return new_dir.normalized()

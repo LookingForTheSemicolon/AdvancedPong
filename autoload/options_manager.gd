@@ -7,16 +7,12 @@ var window_size_list = [
     { "width": 1760, "height": 990},
     { "width": 1600, "height": 900},
     { "width": 1280, "height": 960},
+    { "width": 1152, "height": 648},
 ]
 
-var player_paddles = [
-    { "name" : "Standard", "path": "res://scenes/PlayerPaddles/Default/player.tscn"}, 
-    { "name" : "C-Shape", "path": "res://scenes/PlayerPaddles/CShape/player2.tscn"}
-]
-    
-var cpu_paddles = [
-    { "name" : "Standard", "path": "res://scenes/PlayerPaddles/Default/cpu.tscn"}, 
-    { "name" : "C-Shape", "path": "res://scenes/PlayerPaddles/CShape/player2.tscn"}
+var paddles = [
+    { "name" : "Standard"}, 
+    { "name" : "C-Shape"}
 ]
 
 

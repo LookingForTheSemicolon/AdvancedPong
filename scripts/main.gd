@@ -4,7 +4,6 @@ extends Control
 @onready var options_button = $VBoxContainer/OptionsButton as Button
 @onready var exit_button = $VBoxContainer/ExitButton as Button
 
-
 @onready var start_level = preload("res://scenes/game.tscn") as PackedScene
 
 @onready var options_menu = $Options as Options_Menu

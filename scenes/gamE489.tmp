@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb6hagkqbm3rh"]
+[gd_scene load_steps=10 format=3 uid="uid://cb6hagkqbm3rh"]
 
 [ext_resource type="Texture2D" uid="uid://cdi47qxpig3qo" path="res://art/PongBackground.png" id="1_hvium"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="2_gupkl"]
-[ext_resource type="PackedScene" uid="uid://csv2xht8gwb8d" path="res://scenes/PlayerPaddles/CShape/playerC.tscn" id="3_fonbd"]
 [ext_resource type="PackedScene" uid="uid://cw3sacm35s47h" path="res://scenes/PlayerPaddles/Default/player.tscn" id="3_h8fg2"]
 [ext_resource type="PackedScene" uid="uid://ceyv1kum61j7y" path="res://scenes/PlayerPaddles/Default/cpu.tscn" id="4_mred2"]
 [ext_resource type="PackedScene" uid="uid://dm6xf6fsg8y6y" path="res://scenes/Balls/ball.tscn" id="6_yic3j"]
@@ -44,26 +43,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_hvium")
 
-[node name="PlayerC" parent="." instance=ExtResource("3_fonbd")]
-position = Vector2(0, 0)
-
-[node name="Movment" parent="PlayerC" index="0" node_paths=PackedStringArray("ball")]
-ball = NodePath("../../Ball")
-
 [node name="CPU" parent="." instance=ExtResource("4_mred2")]
-
-[node name="Movment" parent="CPU" index="2" node_paths=PackedStringArray("paddle", "ball")]
-paddle = NodePath("..")
-ball = NodePath("../../Ball")
 
 [node name="Player" parent="." instance=ExtResource("3_h8fg2")]
 
-[node name="Movment" parent="Player" index="2" node_paths=PackedStringArray("paddle", "ball")]
-paddle = NodePath("..")
-ball = NodePath("../../Ball")
-
 [node name="Ball" parent="." instance=ExtResource("6_yic3j")]
-unique_name_in_owner = true
 
 [node name="Borders" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -116,7 +100,4 @@ autostart = true
 [connection signal="body_entered" from="ScoreRight" to="." method="_on_score_right_body_entered"]
 [connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
 
-[editable path="PlayerC"]
-[editable path="CPU"]
-[editable path="Player"]
 [editable path="Ball"]

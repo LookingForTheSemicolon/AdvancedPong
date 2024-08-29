@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://csv2xht8gwb8d"]
+
+[ext_resource type="Script" path="res://scripts/player_c.gd" id="1_utlrp"]
+[ext_resource type="PackedScene" uid="uid://44cv7tv514u" path="res://scenes/Movement/Movment.tscn" id="2_5o6yg"]
+
+[node name="PlayerC" type="StaticBody2D"]
+position = Vector2(50, 324)
+script = ExtResource("1_utlrp")
+
+[node name="Movment" parent="." node_paths=PackedStringArray("paddle") instance=ExtResource("2_5o6yg")]
+position = Vector2(11.3241, -355.522)
+paddle = NodePath("..")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-11, -81, 110, -81, 110, -61, 10, -61, 10, 59, 110, 59, 110, 79, -10, 79)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-11, -81, 110, -81, 110, -61, 10, -61, 10, 59, 110, 59, 110, 79, -10, 79)

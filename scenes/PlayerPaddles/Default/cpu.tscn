@@ -1,23 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmkplkn6d2blt"]
+[gd_scene load_steps=5 format=3 uid="uid://ceyv1kum61j7y"]
 
 [ext_resource type="Script" path="res://scripts/cpu.gd" id="1_8ib46"]
+[ext_resource type="Texture2D" uid="uid://dn4i13t2sp3pu" path="res://sprites/paddle.png" id="2_nv7hv"]
+[ext_resource type="PackedScene" uid="uid://44cv7tv514u" path="res://scenes/Movement/Movment.tscn" id="3_30wxc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs3k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqf8g"]
 size = Vector2(20, 120)
 
 [node name="CPU" type="StaticBody2D"]
-position = Vector2(1082, 324)
 script = ExtResource("1_8ib46")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -60.0
-offset_right = 20.0
-offset_bottom = 60.0
-grow_vertical = 2
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nv7hv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 0)
-shape = SubResource("RectangleShape2D_lqs3k")
+[node name="CPU2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mqf8g")
+
+[node name="Movment" parent="." instance=ExtResource("3_30wxc")]

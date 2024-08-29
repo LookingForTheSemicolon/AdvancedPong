@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bobw3n8p7aak"]
+
+[ext_resource type="Script" path="res://scenes/PlayerPaddles/Default/paddleSprite.gd" id="1_u4h1l"]
+
+[sub_resource type="GDScript" id="GDScript_02e4m"]
+script/source = "extends Node2D
+class_name Paddle
+
+
+const PADDLE_SPEED: int = 500
+    
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+    if Input.is_action_pressed(\"up\"):
+        position.y -= PADDLE_SPEED * delta
+    elif Input.is_action_pressed(\"down\"):
+        position.y += PADDLE_SPEED * delta
+    
+    position.y = clamp(position.y, 0, get_node(\"Sprite2D\").get_texture().get_size())
+"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4sja5"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_sf8ai"]
+offsets = PackedFloat32Array(0, 0.00649351, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.480519, 0.480519, 0.480519, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cr05g"]
+gradient = SubResource("Gradient_sf8ai")
+width = 20
+height = 120
+
+[node name="Paddle" type="Node2D"]
+script = SubResource("GDScript_02e4m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.00184107, 0.00184107, 0.00184107, 1)
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_4sja5")
+texture = SubResource("GradientTexture2D_cr05g")
+script = ExtResource("1_u4h1l")
