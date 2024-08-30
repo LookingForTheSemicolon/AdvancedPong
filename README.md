@@ -1,7 +1,7 @@
 Optionen:
 
 - Skalierung des Fensters und des Spiels: TODO
-	- Positionierung des Fensters angepasst: DONE
+	- Positionierung des Fensters angepasst: TODO
 	- Manuelle Skalierung des Fensters deaktiviert (fehleranfällig): DONE
 
 - Ändern des Spieler-Paddels
@@ -13,7 +13,7 @@ Optionen:
 - Steuerung frei belegbar: TODO
 
 - Standard Werte für Optionen
-	- Grafik und Spieler erledigt
+	- Grafik und Spieler DONE
 
 
 
@@ -21,8 +21,10 @@ Spiel:
 
 - Border skalieren nicht sauber: TODO
 
-- Szenen optimieren: TODO
-	- C-Shape Hitbox und Modell korrigieren: TODO
+- Szenen optimieren: DONE
+	- C-Shape Hitbox und Modell korrigieren: DONE
 
 
+Mutliplayer 
+- lokal und online: todo
 

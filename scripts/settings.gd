@@ -21,9 +21,9 @@ func load_defaults():
     if not options.has("window_height"):
        options["window_height"] = 648
     if not options.has("player_paddle"):
-       options["player_paddle"] = {"name": "Standard"}
+       options["player_paddle"] = OptionsManager.paddleTyps.Standard
     if not options.has("cpu_paddle"):
-       options["cpu_paddle"] = {"name": "Standard"}
+       options["cpu_paddle"] = OptionsManager.paddleTyps.Standard
     OptionsManager.write_options(options)
     OptionsManager.resize_window()
     
@@ -44,13 +44,13 @@ func load_screen_page():
 func load_paddles():
     var indexPlayer = 0
     var indexCPU = 0
-    for paddle in OptionsManager.paddles:
-        player_paddle_option.add_item(paddle.name)
-        cpu_paddle_option.add_item(paddle.name)
-        if options.has("player_paddle") and paddle.name == options.player_paddle.name:
+    for paddle in OptionsManager.paddleTyps.values():
+        player_paddle_option.add_item(OptionsManager.paddleTyps.find_key(paddle))
+        cpu_paddle_option.add_item(OptionsManager.paddleTyps.find_key(paddle))
+        if options.has("player_paddle") and paddle == options.player_paddle:
           player_paddle_option.select(indexPlayer) 
         indexPlayer += 1         
-        if options.has("cpu_paddle") and paddle.name == options.cpu_paddle.name:
+        if options.has("cpu_paddle") and paddle == options.cpu_paddle:
           cpu_paddle_option.select(indexCPU) 
         indexCPU += 1
         
@@ -75,12 +75,10 @@ func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_player_paddle_option_item_selected(index: int) -> void:
-    var paddle = OptionsManager.paddles[index]
-    options.player_paddle = paddle
+    options.player_paddle = index
     OptionsManager.write_options(options)
 
 
 func _on_cpu_paddle_option_item_selected(index: int) -> void:
-    var paddle = OptionsManager.paddles[index]
-    options.cpu_paddle = paddle
+    options.cpu_paddle = index
     OptionsManager.write_options(options)

@@ -1,13 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb6hagkqbm3rh"]
+[gd_scene load_steps=9 format=3 uid="uid://cb6hagkqbm3rh"]
 
 [ext_resource type="Texture2D" uid="uid://cdi47qxpig3qo" path="res://art/PongBackground.png" id="1_hvium"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="2_gupkl"]
-[ext_resource type="PackedScene" uid="uid://csv2xht8gwb8d" path="res://scenes/PlayerPaddles/CShape/playerC.tscn" id="3_fonbd"]
-[ext_resource type="PackedScene" uid="uid://cw3sacm35s47h" path="res://scenes/PlayerPaddles/Default/player.tscn" id="3_h8fg2"]
-[ext_resource type="PackedScene" uid="uid://ceyv1kum61j7y" path="res://scenes/PlayerPaddles/Default/cpu.tscn" id="4_mred2"]
+[ext_resource type="PackedScene" uid="uid://buv45ei4bsd1u" path="res://scenes/PlayerPaddles/CShape/paddleC.tscn" id="4_oiuve"]
+[ext_resource type="PackedScene" uid="uid://uyt8cpvau3fx" path="res://scenes/PlayerPaddles/Default/paddle.tscn" id="5_lmwvj"]
 [ext_resource type="PackedScene" uid="uid://dm6xf6fsg8y6y" path="res://scenes/Balls/ball.tscn" id="6_yic3j"]
-
-[sub_resource type="MeshTexture" id="MeshTexture_qo8s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d6x6"]
 size = Vector2(1152, 32)
@@ -18,52 +15,50 @@ size = Vector2(1152, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpp1d"]
 size = Vector2(31, 644.75)
 
-[node name="Game" type="Sprite2D"]
-texture = SubResource("MeshTexture_qo8s2")
-centered = false
+[node name="Game" type="Node2D"]
 script = ExtResource("2_gupkl")
 
-[node name="Node" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PongBackground" type="TextureRect" parent="Node"]
-modulate = Color(0.393086, 0.393086, 0.393085, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1151.0
-offset_bottom = 647.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Node" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
 texture = ExtResource("1_hvium")
 
-[node name="PlayerC" parent="." instance=ExtResource("3_fonbd")]
-position = Vector2(0, 0)
+[node name="Player" parent="." instance=ExtResource("5_lmwvj")]
+paddleTyp = 0
 
-[node name="Movment" parent="PlayerC" index="0" node_paths=PackedStringArray("ball")]
-ball = NodePath("../../Ball")
-
-[node name="CPU" parent="." instance=ExtResource("4_mred2")]
-
-[node name="Movment" parent="CPU" index="2" node_paths=PackedStringArray("paddle", "ball")]
+[node name="Movement" parent="Player" index="1" node_paths=PackedStringArray("paddle", "ball")]
 paddle = NodePath("..")
 ball = NodePath("../../Ball")
 
-[node name="Player" parent="." instance=ExtResource("3_h8fg2")]
+[node name="StaticBody2D" parent="Player" index="2" groups=["Standard"]]
 
-[node name="Movment" parent="Player" index="2" node_paths=PackedStringArray("paddle", "ball")]
+[node name="PlayerC" parent="." instance=ExtResource("4_oiuve")]
+paddleTyp = 0
+
+[node name="Movement" parent="PlayerC" index="0" node_paths=PackedStringArray("ball")]
+ball = NodePath("../../Ball")
+
+[node name="StaticBody2D" parent="PlayerC" index="2" groups=["C"]]
+
+[node name="CPU" parent="." instance=ExtResource("5_lmwvj")]
+paddleTyp = 1
+
+[node name="Movement" parent="CPU" index="1" node_paths=PackedStringArray("paddle", "ball")]
 paddle = NodePath("..")
 ball = NodePath("../../Ball")
+
+[node name="StaticBody2D" parent="CPU" index="2" groups=["Standard"]]
+
+[node name="CPUC" parent="." instance=ExtResource("4_oiuve")]
+paddleTyp = 1
+
+[node name="Movement" parent="CPUC" index="0" node_paths=PackedStringArray("ball")]
+ball = NodePath("../../Ball")
+
+[node name="StaticBody2D" parent="CPUC" index="2" groups=["C"]]
 
 [node name="Ball" parent="." instance=ExtResource("6_yic3j")]
 unique_name_in_owner = true
+texture_filter = 1
 
 [node name="Borders" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -91,22 +86,26 @@ shape = SubResource("RectangleShape2D_qpp1d")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="PlayerScore" type="Label" parent="HUD"]
-offset_left = 528.0
-offset_right = 568.0
-offset_bottom = 69.0
+offset_left = 503.0
+offset_top = 17.0
+offset_right = 563.0
+offset_bottom = 86.0
 theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CPUScore" type="Label" parent="HUD"]
-offset_left = 592.0
-offset_right = 632.0
-offset_bottom = 69.0
+offset_left = 599.0
+offset_top = 17.0
+offset_right = 659.0
+offset_bottom = 86.0
 theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="BallTimer" type="Timer" parent="."]
 one_shot = true
@@ -116,7 +115,8 @@ autostart = true
 [connection signal="body_entered" from="ScoreRight" to="." method="_on_score_right_body_entered"]
 [connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
 
+[editable path="Player"]
 [editable path="PlayerC"]
 [editable path="CPU"]
-[editable path="Player"]
+[editable path="CPUC"]
 [editable path="Ball"]

@@ -10,11 +10,8 @@ var window_size_list = [
     { "width": 1152, "height": 648},
 ]
 
-var paddles = [
-    { "name" : "Standard"}, 
-    { "name" : "C-Shape"}
-]
 
+enum paddleTyps {Standard, CShape}
 
 func read_options():
     var options = {}

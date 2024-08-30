@@ -1,11 +1,11 @@
 extends CharacterBody2D
 class_name Ball
 
-var win_size: Vector2
 const START_SPEED: int = 500
 const ACCEL:int = 50
 var speed: int
 var dir: Vector2
+var win_size: Vector2
 const MAX_Y_VECTOR: float = 0.6
 
 func _ready() -> void:
@@ -22,12 +22,13 @@ func _physics_process(delta: float) -> void:
     var collision = move_and_collide(dir * speed * delta)
     var collider
     if collision:
-        collider = collision.get_collider()
-        #ball hits paddle
+        #Need to get the parent node of the collider since the Parent is a Node2D and the collision happens
+        #on a child of the Node2D Scene
+        collider = collision.get_collider().get_parent()
         if collider.name == "Player" or collider.name == "CPU":
             speed += ACCEL
             dir = new_direction_default(collider)
-        elif collider.name == "PlayerC":
+        elif collider.name == "PlayerC" or collider.name == "CPUC":
             dir = new_direction_CShape(collider, collision)
         #ball hits wall
         else:
@@ -60,8 +61,13 @@ func new_direction_CShape(collider, collision):
     var pad_y = collider.position.y
     var dist = ball_y - pad_y
     var new_dir := Vector2()
+    var ball_x = position.x
     #if hit on Top or Bottom Paddle -> just bounce
-    if(position.x > 65 && collision != null):
+    print(ball_x)
+    if(collider.name == "PlayerC" and ball_x > 65.5 and ball_x < 165.5 && collision != null):
+        new_dir = dir.bounce(collision.get_normal())
+        return new_dir.normalized()
+    elif (collider.name == "CPUC" and ball_x < win_size.x -65.5 and win_size.x - 165):
         new_dir = dir.bounce(collision.get_normal())
         return new_dir.normalized()
     #flip direction
