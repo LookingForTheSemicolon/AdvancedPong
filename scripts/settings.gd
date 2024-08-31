@@ -17,9 +17,9 @@ func load_defaults():
     if not options.has("full_screen"):
        options["full_screen"] = false
     if not options.has("window_width"):
-       options["window_width"] = 1152
+       options["window_width"] = 1920
     if not options.has("window_height"):
-       options["window_height"] = 648
+       options["window_height"] = 1080
     if not options.has("player_paddle"):
        options["player_paddle"] = OptionsManager.paddleTyps.Standard
     if not options.has("cpu_paddle"):

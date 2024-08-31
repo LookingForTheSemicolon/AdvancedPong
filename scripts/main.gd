@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var start_button = $VBoxContainer/StartButton as Button
 @onready var options_button = $VBoxContainer/OptionsButton as Button

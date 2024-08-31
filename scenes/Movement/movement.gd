@@ -9,14 +9,14 @@ const PADDLE_SPEED: int = 500
 var ball_pos: Vector2
 var dist: int 
 var move_by: int
-var paddleName = null
+var paddleName:StringName = ""
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     win_height = get_viewport_rect().size.y
-    paddleName = paddle.get_class_name()
+    paddleName = paddle.name
 
 func _process(delta: float) -> void:
-    if paddleName != "CPU":
+    if paddleName.begins_with("Player"):
         if Input.is_action_pressed("up"):
             paddle.position.y -= PADDLE_SPEED * delta
         elif Input.is_action_pressed("down"):
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
         
         paddle.position.y = clamp(paddle.position.y, paddle.p_height / 2, win_height - paddle.p_height / 2)
         
-    elif paddleName == "CPU":
+    elif paddleName.begins_with("CPU"):
         #move paddle towards ball
         ball_pos = ball.position
         dist = paddle.position.y - ball_pos.y 

@@ -1,11 +1,6 @@
 Optionen:
 
-- Skalierung des Fensters und des Spiels: TODO
-	- Positionierung des Fensters angepasst: TODO
-	- Manuelle Skalierung des Fensters deaktiviert (fehleranfällig): DONE
-
 - Ändern des Spieler-Paddels
-	- Spieler und CPU können anhand der Optionen geändert werden: DONE
 	- Farbe ändern: TODO
 
 - Musik: TODO
@@ -13,18 +8,11 @@ Optionen:
 - Steuerung frei belegbar: TODO
 
 - Standard Werte für Optionen
-	- Grafik und Spieler DONE
+	- Audio und Steuerung TODO
 
 
 
 Spiel:
-
-- Border skalieren nicht sauber: TODO
-
-- Szenen optimieren: DONE
-	- C-Shape Hitbox und Modell korrigieren: DONE
-
-
-Mutliplayer 
-- lokal und online: todo
+ - Mutliplayer 
+	- lokal und online: todo
 

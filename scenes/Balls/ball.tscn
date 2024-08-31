@@ -6,7 +6,6 @@
 size = Vector2(10, 10)
 
 [node name="Ball" type="CharacterBody2D"]
-position = Vector2(576, 324)
 collision_mask = 3
 slide_on_ceiling = false
 script = ExtResource("1_gktgk")

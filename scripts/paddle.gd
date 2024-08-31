@@ -4,10 +4,6 @@ class_name Paddle
 var p_height: int
 @export_enum("Player", "CPU") var paddleTyp
 enum paddleName {Player, CPU}
-
-func get_class_name():
-    if not paddleTyp == null:
-        return paddleName.find_key(paddleTyp)
     
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

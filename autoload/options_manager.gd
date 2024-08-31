@@ -41,7 +41,7 @@ func resize_window():
         var window_size = Vector2(options.window_width, options.window_height)
         var screen_position = DisplayServer.screen_get_position(0) # 0 primary screen
         get_window().size = window_size
-        
+        get_window().get_viewport().get_visible_rect().size = window_size
         DisplayServer.window_set_position(Vector2i(screen_position.x, screen_position.y + 25))
     
 # Called when the node enters the scene tree for the first time.
