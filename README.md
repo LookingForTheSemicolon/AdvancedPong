@@ -9,6 +9,7 @@ Optionen:
 
 - Standard Werte für Optionen
 	- Audio und Steuerung TODO
+	- Speichern und Laden der Steuerung in InputMaps
 
 
 
