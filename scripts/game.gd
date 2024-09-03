@@ -6,18 +6,16 @@ const PADDLE_SPEED: int = 500
 @onready var standardPaddle = preload("res://scenes/PlayerPaddles/Default/paddle.tscn")
 @onready var cPaddle = preload("res://scenes/PlayerPaddles/CShape/paddleC.tscn")
 
-var options = null
+var user_prefs: UserPreferences
 var windowSize: Vector2 = Vector2.ZERO
-    
+
 func _ready() -> void:
-    options = OptionsManager.read_options()
+    user_prefs = UserPreferences.load_or_create()
     windowSize = get_viewport().get_visible_rect().size
-    if options.has("player_paddle"):
-        var option = options.player_paddle
-        spawn_player_paddle(option)
-    if options.has("cpu_paddle"):
-        var option = options.cpu_paddle
-        spawn_cpu_paddle(option)
+    if user_prefs.player_paddle:
+        spawn_player_paddle(user_prefs.player_paddle)
+    if user_prefs.cpu_player2_paddle:
+        spawn_cpu_paddle(user_prefs.cpu_player2_paddle)
         
 func spawn_player_paddle(paddleTyp: int):
     if paddleTyp == OptionsManager.paddleTyps.Standard:

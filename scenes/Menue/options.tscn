@@ -39,6 +39,15 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="TabContainer" parent="MarginContainer/VBoxContainer/Settings" index="0"]
+current_tab = 0
+
+[node name="Game" parent="MarginContainer/VBoxContainer/Settings/TabContainer" index="1"]
+visible = true
+
+[node name="Controls" parent="MarginContainer/VBoxContainer/Settings/TabContainer" index="4"]
+visible = false
+
 [node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8

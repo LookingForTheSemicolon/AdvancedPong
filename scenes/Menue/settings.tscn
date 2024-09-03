@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpqctix88ee60"]
+[gd_scene load_steps=3 format=3 uid="uid://cpqctix88ee60"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_i4p46"]
+[ext_resource type="Theme" uid="uid://d2vqo5gdxuegn" path="res://theme/default_theme.tres" id="2_ic28h"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -52,10 +53,14 @@ columns = 2
 
 [node name="Mode" type="Label" parent="TabContainer/Game/MarginContainer/Grid"]
 layout_mode = 2
+tooltip_text = "Play against the Computer (CPU) or a Friend (PVP)"
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 theme_override_font_sizes/font_size = 24
-text = "Mode (CPU/Player2):"
+text = "Mode:"
 
 [node name="ModeOptions" type="OptionButton" parent="TabContainer/Game/MarginContainer/Grid"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 
@@ -169,11 +174,12 @@ alignment = 1
 [node name="InputLabelsContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
+theme_override_constants/separation = 10
 
 [node name="ColLabelControl" type="Label" parent="TabContainer/Controls/MarginContainer/HBoxContainer/InputLabelsContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme = ExtResource("2_ic28h")
 theme_override_font_sizes/font_size = 24
 text = "Control:"
 
@@ -231,7 +237,7 @@ text = "123456789"
 layout_mode = 2
 text = "123456789"
 
-[connection signal="item_selected" from="TabContainer/Game/MarginContainer/Grid/ModeOptions" to="." method="_on_window_size_option_item_selected"]
+[connection signal="item_selected" from="TabContainer/Game/MarginContainer/Grid/ModeOptions" to="." method="_on_mode_options_item_selected"]
 [connection signal="item_selected" from="TabContainer/Player/MarginContainer/Grid/PlayerPaddleOption" to="." method="_on_player_paddle_option_item_selected"]
 [connection signal="item_selected" from="TabContainer/Player/MarginContainer/Grid/CPUPaddleOption" to="." method="_on_cpu_paddle_option_item_selected"]
 [connection signal="item_selected" from="TabContainer/Graphics/MarginContainer/Grid/WindowSizeOption" to="." method="_on_window_size_option_item_selected"]
