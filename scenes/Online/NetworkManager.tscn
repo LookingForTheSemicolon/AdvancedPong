@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8wb1itbtyqmj"]
+
+[ext_resource type="Script" path="res://scenes/Online/network_manager.gd" id="1_0r71p"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0r71p")
+
+[node name="Local" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = -122.0
+offset_right = 251.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="HBoxContainer" parent="Local"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Local/Title"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Mutliplayer Pong"
+
+[node name="IP" type="HBoxContainer" parent="Local"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerName" type="Label" parent="Local/IP"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Name"
+
+[node name="PlayerNameInput" type="TextEdit" parent="Local/IP"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="Buttons" type="HBoxContainer" parent="Local"]
+layout_mode = 2
+alignment = 1
+
+[node name="HostButton" type="Button" parent="Local/Buttons"]
+layout_mode = 2
+text = "HOST"
+
+[node name="JoinButton" type="Button" parent="Local/Buttons"]
+layout_mode = 2
+text = "JOIN"
+
+[node name="StartServer" type="Button" parent="Local/Buttons"]
+layout_mode = 2
+text = "Start Server"
+
+[connection signal="pressed" from="Local/Buttons/HostButton" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Local/Buttons/JoinButton" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Local/Buttons/StartServer" to="." method="_on_start_server_pressed"]

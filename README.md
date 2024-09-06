@@ -6,6 +6,9 @@ Optionen:
 	- Audio TODO
 
 Spiel:
- - Mutliplayer 
-	- online: todo
+ - Mutliplayer
+	- Clean-Up Code
+	- Start Ball wenn beide verbunden sind
+	
 
+Fix: Load Window Size on Start-up

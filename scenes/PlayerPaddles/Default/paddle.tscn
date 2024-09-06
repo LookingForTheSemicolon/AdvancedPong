@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://uyt8cpvau3fx"]
+[gd_scene load_steps=6 format=3 uid="uid://uyt8cpvau3fx"]
 
 [ext_resource type="Script" path="res://scripts/paddle.gd" id="1_7ed7a"]
 [ext_resource type="Texture2D" uid="uid://chpxhrsdaotwd" path="res://sprites/paddle.png" id="2_aeypb"]
@@ -6,6 +6,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbmep"]
 size = Vector2(20, 120)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dldnp"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Paddle" type="Node2D"]
 script = ExtResource("1_7ed7a")
@@ -19,3 +24,6 @@ texture = ExtResource("2_aeypb")
 
 [node name="ColPlayer" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_cbmep")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_dldnp")

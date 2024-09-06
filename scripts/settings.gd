@@ -35,7 +35,7 @@ func create_action_remap_items() -> void:
         var label = Label.new()
         label.text = action
         label.theme = preload("res://theme/default_theme.tres")
-        label.theme_type_variation = "Label"
+        label.theme_type_variation = "RemapLabel"
         input_labels_container.add_child(label)
         var button = RemapButton.new()
         button.action = action

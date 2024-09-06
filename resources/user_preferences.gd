@@ -6,6 +6,7 @@ class_name UserPreferences extends Resource
 @export var action_events: Dictionary = {}
 @export var full_screen: bool = false
 @export var window_size: Vector2 = Vector2(1920, 1080)
+@export var onlineGame: bool = false
 
 func save() -> void:
     ResourceSaver.save(self, "user://user_prefs.tres")

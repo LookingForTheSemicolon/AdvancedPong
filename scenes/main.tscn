@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctmg35wpld28d"]
+[gd_scene load_steps=5 format=3 uid="uid://ctmg35wpld28d"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rxn43"]
 [ext_resource type="Texture2D" uid="uid://cdi47qxpig3qo" path="res://art/PongBackground.png" id="2_quvyn"]
 [ext_resource type="PackedScene" uid="uid://cclhajiw61ag5" path="res://scenes/Menue/options.tscn" id="3_6dhxo"]
+[ext_resource type="PackedScene" uid="uid://b8wb1itbtyqmj" path="res://scenes/Online/NetworkManager.tscn" id="3_qlsfp"]
 
 [node name="Main" type="CanvasLayer"]
 script = ExtResource("1_rxn43")
@@ -28,7 +29,7 @@ grow_vertical = 2
 texture = ExtResource("2_quvyn")
 expand_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Local" type="VBoxContainer" parent="."]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,23 +43,32 @@ offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartLocalButton" type="Button" parent="Local"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../ExitButton")
 theme_override_font_sizes/font_size = 36
-text = "Start"
+text = "Start local game"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="StartOnlineButton" type="Button" parent="Local"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitButton")
+theme_override_font_sizes/font_size = 36
+text = "Start online game"
+
+[node name="OptionsButton" type="Button" parent="Local"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Options"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Local"]
 layout_mode = 2
 size_flags_vertical = 8
-focus_neighbor_bottom = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../StartLocalButton")
 theme_override_font_sizes/font_size = 36
 text = "Exit"
+
+[node name="Online" parent="." instance=ExtResource("3_qlsfp")]
+visible = false
 
 [node name="Options" parent="." instance=ExtResource("3_6dhxo")]
 visible = false
@@ -67,9 +77,10 @@ visible = false
 offset_right = 18.0
 offset_bottom = 12.0
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Local/StartLocalButton" to="." method="_on_start_local_button_pressed"]
+[connection signal="pressed" from="Local/StartOnlineButton" to="." method="_on_start_online_button_pressed"]
+[connection signal="pressed" from="Local/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Local/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_options_exit_option_menu"]
 
 [editable path="Options"]

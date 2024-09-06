@@ -10,7 +10,8 @@ const MAX_Y_VECTOR: float = 0.6
 
 func _ready() -> void:
     win_size = get_viewport_rect().size
-    
+
+@rpc("any_peer", "call_local")
 func new_Ball():
     #random start and direction
     position.x = win_size.x / 2
@@ -63,7 +64,6 @@ func new_direction_CShape(collider, collision):
     var new_dir := Vector2()
     var ball_x = position.x
     #if hit on Top or Bottom Paddle -> just bounce
-    print(ball_x)
     if(collider.name == "PlayerC" and ball_x > 65.5 and ball_x < 165.5 && collision != null):
         new_dir = dir.bounce(collision.get_normal())
         return new_dir.normalized()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cb6hagkqbm3rh"]
+[gd_scene load_steps=8 format=3 uid="uid://cb6hagkqbm3rh"]
 
 [ext_resource type="Texture2D" uid="uid://cdi47qxpig3qo" path="res://art/PongBackground.png" id="1_hvium"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="2_gupkl"]
@@ -12,6 +12,8 @@ size = Vector2(1923, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpp1d"]
 size = Vector2(31, 1075.38)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_e2ko5"]
 
 [node name="Game" type="CanvasLayer"]
 script = ExtResource("2_gupkl")
@@ -99,6 +101,9 @@ metadata/_edit_use_anchors_ = true
 [node name="BallTimer" type="Timer" parent="GamePanel"]
 one_shot = true
 autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_e2ko5")
 
 [connection signal="body_entered" from="GamePanel/ScoreLeft" to="." method="_on_score_left_body_entered"]
 [connection signal="body_entered" from="GamePanel/ScoreRight" to="." method="_on_score_right_body_entered"]

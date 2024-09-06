@@ -4,6 +4,7 @@ class_name PaddleC
 var p_height: int
 @export_enum("Player", "CPU") var paddleTyp
 enum paddleName {Player, CPU}
+var online_id: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

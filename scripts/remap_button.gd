@@ -13,9 +13,9 @@ func _ready() -> void:
     set_process_unhandled_input(false)
     update_key_text()
 
-func _toggled(button_pressed: bool) -> void:
-    set_process_unhandled_input(button_pressed)
-    if button_pressed:
+func _toggled(_button_pressed: bool) -> void:
+    set_process_unhandled_input(_button_pressed)
+    if _button_pressed:
         text = "..."
         release_focus()
     else:
